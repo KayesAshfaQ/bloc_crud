@@ -7,7 +7,14 @@ part 'user_list_event.dart';
 part 'user_list_state.dart';
 
 class UserListBloc extends Bloc<UserListEvent, UserListState> {
-  UserListBloc() : super(UserListInitial(users: [])) {
+  UserListBloc()
+      : super(
+          UserListInitial(users: [
+            User(id: 1, name: 'John', email: 'john@mail.com'),
+            User(id: 2, name: 'Emma', email: 'emma@mail.com'),
+            User(id: 3, name: 'Bicky', email: 'bicky@mail.com'),
+          ]),
+        ) {
     on<AddUser>(_addUser);
     on<DeleteUser>(_deleteUser);
     on<UpdateUser>(_updateUser);
@@ -19,7 +26,7 @@ class UserListBloc extends Bloc<UserListEvent, UserListState> {
   }
 
   void _deleteUser(DeleteUser event, Emitter<UserListState> emit) {
-    state.users.add(event.user);
+    state.users.remove(event.user);
     emit(UserListUpdated(users: state.users));
   }
 

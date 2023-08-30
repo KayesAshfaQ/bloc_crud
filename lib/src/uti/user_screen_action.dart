@@ -1,0 +1,4 @@
+enum UserScreenAction {
+  create,
+  edit,
+}
